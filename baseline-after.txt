@@ -1,0 +1,63 @@
+## past start, no overlap (540-570, room 205, now 720)
+input: room=room-205 start=540 end=570 now=720
+status: unavailable
+reason[0]: Start time must be after the current time (12:00).
+
+## touching before and after bookings (630-660, room 301, now 600)
+input: room=room-301 start=630 end=660 now=600
+status: available
+
+## touching after booking only (720-780, room 301, now 600)
+input: room=room-301 start=720 end=780 now=600
+status: available
+
+## partial overlap (700-750, room 301, now 600)
+input: room=room-301 start=700 end=750 now=600
+status: unavailable
+reason[0]: Overlaps existing booking "AI Study Group" (11:00–12:00).
+
+## contains booking (650-740, room 301, now 600)
+input: room=room-301 start=650 end=740 now=600
+status: unavailable
+reason[0]: Overlaps existing booking "AI Study Group" (11:00–12:00).
+
+## identical to booking (660-720, room 301, now 600)
+input: room=room-301 start=660 end=720 now=600
+status: unavailable
+reason[0]: Overlaps existing booking "AI Study Group" (11:00–12:00).
+
+## exactly 120 min, touching both sides (720-840, room 301, now 600)
+input: room=room-301 start=720 end=840 now=600
+status: available
+
+## 121 minutes (720-841, room 301, now 600)
+input: room=room-301 start=720 end=841 now=600
+status: unavailable
+reason[0]: Bookings cannot be longer than 120 minutes (yours is 121 min).
+reason[1]: Overlaps existing booking "Project Sprint" (14:00–15:30).
+
+## blocked room, valid slot (800-860, room 102, now 720)
+input: room=room-102 start=800 end=860 now=720
+status: unavailable
+reason[0]: Room is currently blocked: Flood damage — under repair until Oct 15.
+
+## reversed interval (750-720, room 301, now 600)
+input: room=room-301 start=750 end=720 now=600
+status: unavailable
+reason[0]: Enter a start and end time so that 0 ≤ start < end ≤ 1440.
+
+## zero duration (720-720, room 301, now 600)
+input: room=room-301 start=720 end=720 now=600
+status: unavailable
+reason[0]: Enter a start and end time so that 0 ≤ start < end ≤ 1440.
+
+## end past 1440 (1380-1441, room 205, now 600)
+input: room=room-205 start=1380 end=1441 now=600
+status: unavailable
+reason[0]: Enter a start and end time so that 0 ≤ start < end ≤ 1440.
+reason[1]: Outside campus hours (07:00–22:00).
+
+## outside campus hours (360-420, room 205, now 300)
+input: room=room-205 start=360 end=420 now=300
+status: unavailable
+reason[0]: Outside campus hours (07:00–22:00).
